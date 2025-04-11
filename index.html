@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sketch</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script src="libraries/p5.min.js"></script>
+    <script src="libraries/p5.sound.min.js"></script>
+  </head>
+
+  <body>
+    <!-- 選單 -->
+    <ul class="menu" id="menu">
+      <li><a href="#home" onclick="hideIframe()">首頁</a></li>
+      <li><a href="#about" onclick="showIframe('Pink Kawaii cute table cloth hand drawn organic scrapbook YouTube Intro.png')">自我介紹</a></li>
+      <li class="submenu">
+        <a href="#portfolio">作品集</a>
+        <ul class="dropdown">
+          <li><a href="#" onclick="showIframe('https://linyuncing.github.io/20250328/')">第一周</a></li>
+          <li><a href="#" onclick="showIframe('https://iclass.tku.edu.tw/course/250138/learning-activity/full-screen#/1864986')">第二周</a></li>
+          <li><a href="#" onclick="showIframe('https://hackmd.io/MvlD-7xlTi2P2WnsNsyoIA')">第三周</a></li>
+          <li><a href="#" onclick="showIframe('https://www.et.tku.edu.tw/')">第四周</a></li>
+        </ul>
+      </li>
+      <li><a href="#quiz" onclick="showIframe('https://example.com/quiz')">測驗卷</a></li>
+      <li><a href="#tutorials" onclick="showIframe('https://cfchen58.synology.me/%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%882024/A2/week1/20250221_092037.mp4')">教學影片</a></li>
+    </ul>
+
+    <!-- 嵌入的 iframe -->
+    <iframe 
+      id="embedded-frame" 
+      class="embedded-frame" 
+      frameborder="0">
+    </iframe>
+
+    <script>
+      // 隱藏 iframe
+      function hideIframe() {
+        const iframe = document.getElementById('embedded-frame');
+        iframe.style.display = 'none';
+      }
+
+      // 顯示 iframe 並設定 src
+      function showIframe(url) {
+        const iframe = document.getElementById('embedded-frame');
+        iframe.style.display = 'block';
+        iframe.src = url;
+      }
+
+      // 頁面載入時隱藏選單
+      window.onload = () => {
+        const menu = document.getElementById('menu');
+        menu.style.top = '-100px'; // 初始位置在視窗外
+
+        // 監聽滑鼠移動事件
+        document.addEventListener('mousemove', (event) => {
+          if (event.clientY < 250) {
+            menu.style.top = '10px'; // 滑入效果
+          } else {
+            menu.style.top = '-100px'; // 滑出效果
+          }
+        });
+      };
+    </script>
+
+    <script src="sketch.js"></script>
+  </body>
+</html>
+
